@@ -4,8 +4,7 @@ ResumeCraft AI is an AI-powered career platform designed to help students and jo
 
 The platform combines resume building, ATS optimization, job matching, voice-based editing, and career assistance in a single application.
 ### 🚀 Live Demo
-
-[**Try ResumeCraft AI →**](resume-craft-ai-one-ivory.vercel.app)
+[**Try ResumeCraft AI →**](https://resume-craft-ai-one-ivory.vercel.app/)
 
 ## Overview
 
