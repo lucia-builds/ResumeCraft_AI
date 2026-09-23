@@ -1,126 +1,166 @@
-# ResumeCraft AI — AI Resume Builder
+# ResumeCraft AI
 
-A from-scratch implementation of the feature flow in the TubeGuruji tutorial **“Build & Deploy AI Resume Builder App Using React, Vite, Tailwind CSS, Strapi, Clerk”**.
+ResumeCraft AI is an AI-powered career platform designed to help students and job seekers create, improve, and manage resumes while preparing for job applications.
 
-Tutorial reference: https://youtu.be/RiUh_8VTGYM
+The platform combines resume building, ATS optimization, job matching, voice-based editing, and career assistance in a single application.
 
-## Implemented flow
+## Overview
 
-- Landing page
-- Authentication entry (local/demo mode; Clerk-ready configuration)
-- Dashboard and resume list
-- Create / edit / delete resumes
-- Personal details
-- Professional summary
-- Gemini-assisted summary generation with a local fallback when no API key exists
-- Multiple experience entries
-- Multiple education entries
-- Skills with proficiency levels
-- Live A4 resume preview
-- Theme color selection
-- Print / browser “Save as PDF” export
-- Shareable resume route
-- LocalStorage persistence
-- Optional Strapi / Axios service hook
+Creating a resume that is both recruiter-friendly and aligned with a specific job description can be challenging, especially for students and fresh graduates.
 
-The original tutorial uses React/Vite, Tailwind CSS, Clerk, Strapi and Gemini, and covers the same core CRUD, preview, AI, download/share, theme and deployment sequence. See the tutorial chapter list in the video description. citeturn457154youtube23turn457154search5
+ResumeCraft AI addresses this by providing tools to:
 
-## Run it
+- Build professional resumes using ATS-friendly templates
+- Improve an existing resume through ATS analysis
+- Compare a resume against a specific job description
+- Identify missing skills and keywords
+- Get actionable suggestions for improving resume content
+- Edit resume content using voice input
+- Discover relevant job opportunities
+- Track job application progress
+- Get guidance through an AI-powered career assistant
 
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
-```
+## Key Features
 
-Open http://localhost:5173.
+### AI Resume Builder
+- Create and edit resumes through a structured form
+- Personal information, summary, education, experience, skills and projects
+- Multiple resume templates
+- Live resume preview
+- Customizable theme colors
+- Download resumes as PDF
+- Save and manage multiple resumes
 
-### Demo mode
-No API keys are required. The app uses LocalStorage for auth/session and resume data, and uses a deterministic AI-summary fallback.
+### ATS Resume Analyzer
+- Upload an existing PDF, DOCX or TXT resume
+- Extract and edit resume content before analysis
+- Add a target job description
+- Generate an ATS alignment score
+- Identify matched and missing keywords
+- Check important resume sections
+- Detect missing contact information
+- Analyze action verbs and measurable achievements
+- Generate a prioritized improvement plan
 
-### Enable Gemini
-Set:
+The ATS score is an application-level heuristic intended to help users improve keyword and content alignment. It does not guarantee a specific score from an external Applicant Tracking System or employer.
 
-```env
-VITE_GEMINI_API_KEY=your_key
-```
+### AI-Assisted Resume Writing
+- Generate and improve professional resume summaries
+- Get content suggestions based on the selected job context
+- Provide more concise and professional wording while preserving the user's actual experience
 
-### Enable the Strapi hook
-Set:
+### Voice Resume Editing
+- Edit supported resume fields using voice input
+- Browser-based speech recognition
+- Useful for quickly entering summaries, experience descriptions and other resume information
+- No microphone recording is directly stored by the application
 
-```env
-VITE_STRAPI_URL=http://localhost:1337/api
-VITE_STRAPI_API_KEY=your_token
-```
+### AI Job Tracker
+- Select a resume as the job-search profile
+- Find relevant job opportunities based on skills and target roles
+- Display resume-to-job matching information
+- Search and filter job listings
+- Save interesting jobs
+- Track application progress
 
-You can then wire `src/services/storage.js` to your Strapi collection. The frontend is intentionally usable without the cloud backend so you can build/test the product first.
+Application statuses include:
 
-### Enable Clerk
-Set `VITE_CLERK_PUBLISHABLE_KEY` and replace the demo `Auth` flow with the Clerk provider/components from `@clerk/clerk-react`. The dependency is already included.
+`Saved → Applied → Interview → Not Selected → Offer`
 
-## Tutorial-to-project mapping
+The Apply button opens the original job listing so the user can review the complete job description and application process.
 
-- 00:06:52 Project Setup → Vite + React project scaffold
-- 00:20:05 React Routing → React Router pages
-- 00:30:06 Authentication → `/auth` entry + Clerk-ready setup
-- 00:41:01 Header → `Header.jsx`
-- 00:48:10 Strapi Backend Setup → backend service abstraction in `services/storage.js`
-- 01:03:05 Create New Resume → dashboard create flow
-- 01:32:56 Dynamic Route & Resume List → `/dashboard/resume/:id/edit`
-- 01:52:21 Resume Preview Section → `ResumePreview.jsx`
-- 02:22:03 Personal Detail → builder tab 1
-- 02:53:06 Summary → builder tab 2
-- 03:04:40 Generate Summary with AI → Gemini service
-- 03:19:30 Experience → builder tab 3
-- 03:55:26 Education → builder tab 4
-- 04:12:45 Skills → builder tab 5
-- 04:28:17 Edit Resume → live state + LocalStorage persistence
-- 04:47:38 Download & Share Resume → print-to-PDF + copied view URL
-- 05:08:03 Delete Resume → dashboard CRUD
-- 05:19:07 Theme Color → theme selector
-- 05:28:27 Deploy Strapi on Cloud / 05:36:01 Deploy App → deployment notes above; choose your hosting provider and add environment variables there.
+### Resume Guide Assistant
+A lightweight AI assistant helps new users understand the platform and provides guidance related to:
 
-## Notes
+- Creating a resume
+- Using ATS analysis
+- Improving resume content
+- Using templates
+- Using voice editing
+- Understanding the job tracker
+- Navigating the platform
 
-The source/tutorial repository is MIT licensed, but this implementation is written independently around the tutorial’s public feature flow. The tutorial is from June 17, 2024. citeturn457154youtube23
+### Community Reviews
+- Display user-submitted ratings and feedback
+- Show reported application outcomes
+- Provide a section where users can share their experience
 
-## New: Upload + ATS Resume Fixer
+Demo review data is clearly separated from real production statistics. Employment outcomes should be verified before being presented as official platform statistics.
 
-Open **Upload & ATS Check** from the dashboard. The checker accepts **PDF, DOCX, or TXT**, extracts selectable text in the browser, and lets the user edit the extracted text before analysis. Paste the exact target job description to get:
+## Resume Templates
 
-- a 0–100 ATS alignment score (heuristic)
-- matched and missing job-description keywords
-- section/contact/formatting checks
-- measurable-impact and action-verb checks
-- a prioritized list of changes to work toward a 95+ target
+ResumeCraft AI provides multiple ATS-friendly templates designed for different career stages and application styles:
 
-The tool deliberately does **not** invent qualifications, experience, technologies, or metrics. A 95 score is a target within this analyzer, not a guarantee of a specific employer ATS result.
+- ATS Classic
+- Modern Clean
+- Tech Minimal
+- Executive
+- Academic
+- Entry Level
 
-### Upload dependencies
+The templates prioritize:
 
-PDF extraction uses `pdfjs-dist`; DOCX extraction uses `mammoth`. Run `npm install` after extracting the updated project.
+- Clear section headings
+- Readable typography
+- Simple layouts
+- Consistent spacing
+- Text-based content
+- ATS-friendly structure
 
-## UI refresh
-The landing page, workspace dashboard, and ATS checker now use a simple professional SaaS-style interface inspired by the uploaded reference video: clean white surfaces, restrained blue accents, soft cards, clear hierarchy, template previews, and a dedicated ATS optimization flow. The layout is intentionally original rather than a copy of the reference.
+## Tech Stack
 
+### Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- React Router
+- JavaScript
+- Lucide Icons
 
-## New UI + assistant features
-- **Voice editing:** browser speech recognition adds spoken text into supported resume fields. Works best in Chromium-based browsers with microphone permission enabled.
-- **Resume Guide:** a floating help assistant explains the site, onboarding, ATS workflow, voice editing, and PDF export. With `VITE_GEMINI_API_KEY`, it can answer broader questions using Gemini; otherwise it uses built-in help responses.
-- **UI refresh:** more polished SaaS cards, builder panels, status pills, subtle glass effects, and clearer visual hierarchy.
+### AI
+- Google Gemini API
+- AI-assisted resume content generation
+- AI career assistance
 
-### Voice editing note
-The voice feature uses the browser Web Speech API. The app does not upload microphone audio; speech recognition is handled by the browser's speech-recognition implementation. Browser support and language behavior can vary.
+### Resume Processing
+- `pdfjs-dist` for PDF text extraction
+- `mammoth` for DOCX text extraction
+- Browser Web Speech API for voice input
 
+### Data & Services
+- LocalStorage for local/demo persistence
+- Axios for API communication
+- Optional Strapi integration
+- Optional Clerk authentication
 
-## Job Tracker
-The Job Tracker matches a selected resume to job listings using an explainable resume-aware heuristic. It can query the keyless Arbeitnow public job-board API and falls back to demo listings when the remote API is unavailable. Apply/View Job opens the original listing URL. The app also stores Saved/Applied/Interview/Not selected/Offer status locally. For production, review the provider's current API terms and consider a server-side integration for rate limiting, caching, and security.
+### Deployment
+- Vercel
 
-## Template System
-Six ATS-first templates are included: ATS Classic, Modern Clean, Tech Minimal, Executive, Academic, and Entry Level. They use straightforward text structure and avoid decorative resume-only graphics. The template gallery is inspired by common ATS-friendly resume conventions; it is not a copy of Enhancv or another vendor's proprietary designs.
+## Application Flow
 
-## Community Reviews & Outcomes
-
-The latest UI includes a community feedback section on the landing page and dashboard. It displays user-submitted ratings and reported outcomes (interview/offer). Local/demo mode starts with clearly labeled example reviews. For a production product, connect these records to a backend and verify employment outcomes before marketing them as platform statistics.
-
-Reviews are stored in localStorage in demo mode under `resumecraft-reviews-v1`.
+```text
+Landing Page
+     │
+     ├── Create Resume
+     │      ├── Choose Template
+     │      ├── Enter Resume Details
+     │      ├── AI Assistance
+     │      ├── Voice Editing
+     │      └── Download / Share
+     │
+     ├── ATS Checker
+     │      ├── Upload Resume
+     │      ├── Add Job Description
+     │      ├── Analyze Resume
+     │      ├── View ATS Score
+     │      └── Improve Missing Areas
+     │
+     ├── Job Tracker
+     │      ├── Select Resume
+     │      ├── Find Relevant Jobs
+     │      ├── View Match Information
+     │      ├── Save Jobs
+     │      └── Track Applications
+     │
+     └── Resume Guide
+            └── User Assistance
